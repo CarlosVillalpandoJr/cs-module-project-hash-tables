@@ -97,9 +97,9 @@ class HashTable:
         """
         # Your code here
         slot = self.djb2(key)
-        if data[slot] is not None:
-            return HashTableEntry.next(HashTableEntry(key, value))
-        data[slot] = HashTableEntry(key, value)
+        if self.data[slot] is not None:
+            return self.data[slot].next(HashTableEntry(key, value))
+        return self.data[slot] = HashTableEntry(key, value)
 
 
     def delete(self, key):
