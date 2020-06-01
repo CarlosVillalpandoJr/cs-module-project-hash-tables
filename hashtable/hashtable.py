@@ -2,6 +2,9 @@
 - With HashTableEntry, want to store not just the value in hash table, but also the key.
     + this would be especially useful when dealing with collisions when there is more than
     one item at each index.
+        - each hash table slot, instead of holding single value, will hold a linked list
+        (1 LL for each hash table slot) and if there is a collision you add it onto LL
+        that is already there.
     + instead of just storing value, store the whole HashTableEntry in our data.
 '''
 class HashTableEntry:
@@ -28,7 +31,8 @@ class HashTable:
 
     def __init__(self, capacity):
         # Your code here
-        self.capacity = capacity 
+        self.capacity = capacity
+        self.data = [None] * self.capacity
 
 
     def get_num_slots(self):
@@ -92,6 +96,10 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        slot = self.djb2(key)
+        if data[slot] is not None:
+            return HashTableEntry.next(HashTableEntry(key, value))
+        data[slot] = HashTableEntry(key, value)
 
 
     def delete(self, key):
