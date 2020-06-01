@@ -121,7 +121,13 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
+        slot = self.djb2(key)
+        hash_entry = self.data[slot]
+        
+        if hash_entry is not None:
+            return hash_entry.value
+        
+        return None
 
 
     def resize(self, new_capacity):
