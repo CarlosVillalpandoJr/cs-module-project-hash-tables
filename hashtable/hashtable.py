@@ -96,9 +96,10 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        slot = self.djb2(key)
+        slot = self.hash_index(key)
         if self.data[slot] is not None:
-            return self.data[slot].next(HashTableEntry(key, value))
+            self.data[slot].next = HashTableEntry(key, value)
+            return self.data[slot].next
         self.data[slot] = HashTableEntry(key, value)
         return self.data[slot]
 
@@ -121,7 +122,7 @@ class HashTable:
 
         Implement this.
         """
-        slot = self.djb2(key)
+        slot = self.hash_index(key)
         hash_entry = self.data[slot]
         
         if hash_entry is not None:
