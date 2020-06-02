@@ -96,12 +96,6 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        slot = self.hash_index(key)
-        if self.data[slot] is not None:
-            self.data[slot].next = HashTableEntry(key, value)
-            return self.data[slot].next
-        self.data[slot] = HashTableEntry(key, value)
-        return self.data[slot]
 
     def delete(self, key):
         """
@@ -122,13 +116,7 @@ class HashTable:
 
         Implement this.
         """
-        slot = self.hash_index(key)
-        hash_entry = self.data[slot]
-        
-        if hash_entry is not None:
-            return hash_entry.value
-        
-        return None
+    
 
 
     def resize(self, new_capacity):
