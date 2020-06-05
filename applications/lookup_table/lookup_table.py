@@ -1,5 +1,7 @@
 # Your code here
+import math
 
+table = {}
 
 def slowfun_too_slow(x, y):
     v = math.pow(x, y)

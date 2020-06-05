@@ -1,3 +1,44 @@
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+    
+    def insert_at_head(self, node):
+        node.next = self.head
+        self.head = node
+    
+    def find(self, value):
+        current = self.head 
+        while current is not None:
+            if current.value == value:
+                return current
+            current = current.next
+        return None
+
+    def delete(self, value):
+        current = self.head
+
+        if current.value == value:
+            self.head = self.head.next
+            return current
+        
+        prev = current
+        current = current.next
+
+        while current is not None:
+            if current.value == value:
+                prev.next == current.next
+                return current
+            else:
+                prev = current.next
+                current = current.next
+        return None
+
+
 '''
 - With HashTableEntry, want to store not just the value in hash table, but also the key.
     + this would be especially useful when dealing with collisions when there is more than
@@ -25,14 +66,14 @@ class HashTable:
     """
     A hash table that with `capacity` buckets
     that accepts string keys
+
     Implement this.
     """
 
     def __init__(self, capacity):
         # Your code here
         self.capacity = capacity
-        self.data = [None] * capacity
-        self.size = 0
+        self.data = [None] * self.capacity
 
 
     def get_num_slots(self):
@@ -40,39 +81,44 @@ class HashTable:
         Return the length of the list you're using to hold the hash
         table data. (Not the number of items stored in the hash table,
         but the number of slots in the main list.)
+
         One of the tests relies on this.
+
         Implement this.
         """
         # Your code here
-        pass
+        return self.capacity
 
     def get_load_factor(self):
         """
         Return the load factor for this hash table.
+
         Implement this.
         """
         # Your code here
-        pass
+
 
     def fnv1(self, key):
         """
         FNV-1 Hash, 64-bit
+
         Implement this, and/or DJB2.
         """
 
         # Your code here
-        pass
+
 
     def djb2(self, key):
         """
         DJB2 hash, 32-bit
+
         Implement this, and/or FNV-1.
         """
         # Your code here
         hash = 5381
         for x in key:
             hash = (( hash << 5) + hash) + ord(x)
-        return hash & 0xFFFFFFFF
+            return hash & 0xFFFFFFFF
 
     def hash_index(self, key):
         """
@@ -85,50 +131,44 @@ class HashTable:
     def put(self, key, value):
         """
         Store the value with the given key.
+
         Hash collisions should be handled with Linked List Chaining.
+
         Implement this.
         """
         # Your code here
-        slot = self.hash_index(key)
-        if self.data[slot] is None:
-            self.data[slot] = HashTableEntry(key, value)
-            self.size += 1
-        else:
-            current = self.data[slot]
-            while current is not None:
-                print(current.value)
-                current = current.next
-            current = HashTableEntry(key, value)
 
-        
-
-                
     def delete(self, key):
         """
         Remove the value stored with the given key.
+
         Print a warning if the key is not found.
+
         Implement this.
         """
         # Your code here
-        pass
+
 
     def get(self, key):
         """
         Retrieve the value stored with the given key.
+
         Returns None if the key is not found.
+
         Implement this.
         """
-        # Your code here
-        pass
+    
+
 
     def resize(self, new_capacity):
         """
         Changes the capacity of the hash table and
         rehashes all key/value pairs.
+
         Implement this.
         """
         # Your code here
-        pass
+
 
 
 if __name__ == "__main__":

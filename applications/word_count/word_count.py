@@ -1,5 +1,25 @@
+ignore = ['"', ':', ';', ',', '.', '-', '+', '=', '/', '\\', '|', '[', ']', '{', '}', '(', ')', '*', '^', '&']
 def word_count(s):
-    # Your code here
+    new = []
+    for l in s:
+        letter = l.lower()
+        if letter in ignore:
+            letter = letter.replace(letter, '')
+        new.append(letter)
+    updated = ''.join(new).split(' ')
+    return tableHelper(updated)
+
+def tableHelper(list):
+    table = {}
+    for word in list:
+        if word in table:
+            table[word] += 1
+        else:
+            table[word] = 1
+    return table
+
+
+        
 
 
 
